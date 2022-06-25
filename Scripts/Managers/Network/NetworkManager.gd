@@ -1,12 +1,18 @@
 extends Node2D
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 const PORT = 4567
 
 var peer = NetworkedMultiplayerENet.new()
 
+<<<<<<< HEAD
 # Connect all functions
 
+=======
+>>>>>>> master
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
@@ -35,13 +41,21 @@ func get_client_info() -> Dictionary:
 	}
 
 
+remote func game_state_lobby():
+	emit_signal("lobby")
+
+
+remote func game_state_start():
+	emit_signal("game_start")
+
+
 """ SERVER HANDLING """
 
 var players: Dictionary = {}
+var lobby_ready_players: Dictionary = {}
 
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
-
 
 func start_server():
 	print("Starting server")
@@ -53,7 +67,42 @@ remote func player_joined(player_info: Dictionary):
 	# Save the player info, and tell people about it
 	var id = get_tree().get_rpc_sender_id()
 	players[id] = player_info
+
 	emit_signal("player_connected", id, player_info)
+	
+	rpc_id(id, "game_state_lobby")
+
+
+remote func set_player_ready(what: bool):
+	var id = get_tree().get_rpc_sender_id()
+	lobby_ready_players[id] = what
+	
+	# If all players are ready, let's start
+	if all_players_ready():
+		rpc("game_state_start")
+		emit_signal("game_start")
+
+
+func all_players_ready() -> bool:
+	
+	for ready in lobby_ready_players.values():
+		print(ready)
+		if not ready:
+			return false
+	
+	return true
+
+
+
+""" SHARED FUNCTIONS """
+
+signal state_connect()
+signal lobby()
+signal game_start()
+
+func end_connection():
+	print("Ending connection")
+	peer.close_connection()
 
 
 """ SIGNAL HANDLING """
@@ -82,6 +131,4 @@ func _connection_failed():
 
 func _server_disconnected():
 	print("Server disconnected")
-	pass # Server kicked us; show error and abort.
-
-
+	emit_signal("state_connect")

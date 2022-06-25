@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/ServerGame.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Food.tscn" type="PackedScene" id=2]
+
+[node name="ServerGame" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="CenterContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -181.0
+margin_bottom = 28.0
+alignment = 1
+
+[node name="Back" type="Button" parent="CanvasLayer/Control/CenterContainer"]
+margin_top = 4.0
+margin_right = 181.0
+margin_bottom = 24.0
+text = "BACK"
+
+[node name="Food" parent="." instance=ExtResource( 2 )]
+position = Vector2( 404, 313 )
+
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/Back" to="CanvasLayer/Control" method="_on_Back_pressed"]
