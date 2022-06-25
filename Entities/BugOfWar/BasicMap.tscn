@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://resources/drawable/Sand Map 2 (Screenshot bc we can't export).png" type="Texture" id=1]
-[ext_resource path="res://Entities/Anthill.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/BasicMap.gd" type="Script" id=3]
+[ext_resource path="res://Entities/BugOfWar/Anthill.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/BugOfWar/BasicMap.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Controllers/PlayerController.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Entities/Ant.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/BugOfWar/Ant.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 4.98372 )

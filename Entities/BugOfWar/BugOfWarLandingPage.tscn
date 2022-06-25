@@ -2,7 +2,7 @@
 
 [ext_resource path="res://resources/drawable/Fonts/EraserRegular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://resources/drawable/Menu Screen w_o Game Code and Players.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/LandingPage.gd" type="Script" id=3]
+[ext_resource path="res://Entities/BugOfWar/BugOfWarLandingPage.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36

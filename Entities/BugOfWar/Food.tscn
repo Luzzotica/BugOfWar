@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Entities/Food.gd" type="Script" id=1]
+[ext_resource path="res://Entities/BugOfWar/Food.gd" type="Script" id=1]
 [ext_resource path="res://resources/drawable/icon.png" type="Texture" id=2]
 
 
