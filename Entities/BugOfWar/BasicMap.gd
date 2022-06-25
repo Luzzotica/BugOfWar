@@ -5,12 +5,13 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# FOR LOCAL DEV
 	$PlayerController.setup_local()
 	$Ant.controller = $PlayerController
+	
+	$NaturalDisasterFactory._spawn_disaster(2)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

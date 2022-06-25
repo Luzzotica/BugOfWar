@@ -2,7 +2,7 @@ extends Node2D
 
 export(PackedScene) var foot
 export(PackedScene) var fire
-export(PackedScene) var flood
+export(PackedScene) var droplet
 
 var rng = RandomNumberGenerator.new()
 
@@ -18,7 +18,7 @@ enum Frequencies {
 enum Disasters {
 	FOOT = 0
 	FIRE = 1
-	FLOOD = 2
+	DROPLET = 2
 }
 
 # Declare member variables here.
@@ -49,13 +49,18 @@ func _reset_disaster_timer():
 	if mean_frequency < INF:
 		time_until_next_disaster = rng.randfn(mean_frequency, variance)
 
-func _spawn_disaster():
+func _spawn_disaster(spawn_seed: int = -1):
 	# get disaster origin
 	var origin = RandomCoordinateFactory.get_point_in_area(disaster_area)
 	var rotation = rng.randf_range(0,180)
 	# select a disaster type
 	# spawn that object, and let it go do its thing
-	var disaster_type = rng.randi_range(0,2)
+	var disaster_type : int
+	if (spawn_seed in range(0,2)):
+		disaster_type = spawn_seed
+	else:
+		disaster_type = rng.randi_range(0,2)
+	
 	var disaster_instance = null
 	
 	if disaster_type == 0:
@@ -65,8 +70,8 @@ func _spawn_disaster():
 		# fire
 		disaster_instance = fire.instance()
 	elif disaster_type == 2:
-		# flood
-		disaster_instance = flood.instance()
+		# droplet
+		disaster_instance = droplet.instance()
 	else:
 		print("Invalid disaster type: ", disaster_type)
 	
