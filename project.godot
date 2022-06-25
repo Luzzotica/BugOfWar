@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "PlayerController",
+"language": "GDScript",
+"path": "res://Scripts/Controllers/PlayerController.gd"
+} ]
+_global_script_class_icons={
+"PlayerController": ""
+}
+
 [application]
 
 config/name="Bug Of War"
@@ -16,14 +26,11 @@ config/icon="res://Visuals/icon.png"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
 NetworkManager="*res://Scripts/Managers/Network/NetworkManager.tscn"
 MusicController="*res://MusicController.tscn"
+InputManager="*res://Scripts/Managers/InputManager.tscn"
+Global="*res://Scripts/Global.gd"
 
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

@@ -1,6 +1,9 @@
 extends Node2D
 
+
 const PORT = 4567
+
+var peer = NetworkedMultiplayerENet.new()
 
 # Connect all functions
 
@@ -39,6 +42,13 @@ var players: Dictionary = {}
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
 
+
+func start_server():
+	print("Starting server")
+	peer = NetworkedMultiplayerENet.new()
+	peer.create_server(PORT, MAX_PLAYERS)
+	get_tree().network_peer = peer
+
 remote func player_joined(player_info: Dictionary):
 	# Save the player info, and tell people about it
 	var id = get_tree().get_rpc_sender_id()
@@ -71,6 +81,7 @@ func _connection_failed():
 
 
 func _server_disconnected():
+	print("Server disconnected")
 	pass # Server kicked us; show error and abort.
 
 
