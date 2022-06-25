@@ -11,6 +11,7 @@ var player_controllers: Dictionary = {}
 func _ready():
 	NetworkManager.connect("player_connected", self, "_on_NetworkManager_PlayerConnected")
 	NetworkManager.connect("player_disconnected", self, "_on_NetworkManager_PlayerDisconnected")
+	NetworkManager.connect("state_connect", self, "_on_state_connect")
 
 
 func create_controller(id: int, player_info: Dictionary) -> PlayerController:
@@ -31,8 +32,10 @@ remote func remote_create_controller():
 
 func clear_data():
 	for value in player_controllers.values():
-		value[CONTROLLER].queue_free()
-		value[ANT].queue_free()
+		if CONTROLLER in value:
+			value[CONTROLLER].queue_free()
+		if ANT in value:
+			value[ANT].queue_free()
 
 
 """ SIGNALS """
@@ -54,3 +57,7 @@ func _on_NetworkManager_PlayerDisconnected(id: int):
 	player_controllers[id][CONTROLLER].queue_free()
 	player_controllers[id][ANT].queue_free()
 	player_controllers.erase(id)
+
+
+func _on_state_connect():
+	clear_data()

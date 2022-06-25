@@ -14,6 +14,7 @@ var special_pressed = false
 var lobby_ready = false
 
 func _ready():
+	NetworkManager.connect("state_connect", self, "_on_state_connect")
 	NetworkManager.connect("lobby", self, "_on_lobby")
 	NetworkManager.connect("game_start", self, "_on_game_start")
 
@@ -23,6 +24,12 @@ func _process(delta):
 		InputManager.unreliable_action("grab")
 	if special_pressed:
 		InputManager.unreliable_action("special")
+
+
+func _on_state_connect():
+	setup.visible = true
+	lobby.visible = false
+	controllerUI.visible = false
 
 
 func _on_lobby():

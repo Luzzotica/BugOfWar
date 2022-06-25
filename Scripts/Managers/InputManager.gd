@@ -1,8 +1,7 @@
 extends Node2D
 
 
-signal joystick_input(direction)
-signal unreliable_action(info)
+signal frame_input(input)
 signal reliable_action(info)
 
 func _process(delta):
@@ -18,20 +17,14 @@ func _process(delta):
 		dir.x += 1
 	
 	dir = dir.normalized()
-	emit_signal("joystick_input", dir)
-	
-	if Input.is_action_pressed("grab"):
-		reliable_action("grab")
-	
-	if Input.is_action_just_pressed("special"):
-		emit_signal("reliable_action", "special")
+	emit_signal("frame_input", {
+		"d": dir,
+		"g": Input.is_action_pressed("grab"),
+		"s": Input.is_action_pressed("special")
+	})
 
 
-func reliable_action(info: String):
+func reliable_action(info: Dictionary):
 	emit_signal("reliable_action", info)
-
-
-func unreliable_action(info: String):
-	emit_signal("unreliable_action", info)
 
 

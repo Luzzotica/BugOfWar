@@ -89,6 +89,7 @@ func all_players_ready() -> bool:
 
 """ SHARED FUNCTIONS """
 
+signal state_connect()
 signal lobby()
 signal game_start()
 
@@ -129,3 +130,4 @@ func _connection_failed():
 
 func _server_disconnected():
 	print("Server disconnected")
+	emit_signal("state_connect")

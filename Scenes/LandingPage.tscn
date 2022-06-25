@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Managers/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://Visuals/Menu Screen w_o Game Code and Players.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Pages/LandingPage.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/LandingPage.gd" type="Script" id=3]
 
 [node name="LandingPage" type="Control"]
 anchor_right = 1.0
