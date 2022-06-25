@@ -44,11 +44,11 @@ func _physics_process(delta):
 		look_at(get_grabbed_obj_position())
 	else:
 		look_at(position + linear_velocity)
-
-	if Input.is_action_pressed("grab"):
-		grab()
-	else:
-		let_go()
+	
+#	if Input.is_action_pressed("grab"):
+#		grab()
+#	else:
+#		let_go()
 
 
 func is_grabbing_something() -> bool:
@@ -89,3 +89,10 @@ func try_get_grabbable_body(bodies: Array) -> PhysicsBody2D:
 
 func is_grabbable(object: Object) -> bool:
 	return object.has_method("on_grabbed")
+
+
+""" SIGNALS """
+
+#func _on_controller_action(info):
+#	if info == "grab":
+#

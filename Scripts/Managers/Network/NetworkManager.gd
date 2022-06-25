@@ -1,14 +1,8 @@
 extends Node2D
 
-<<<<<<< HEAD:Network/NetworkHandler.gd
-=======
 const PORT = 4567
 
 var peer = NetworkedMultiplayerENet.new()
-
->>>>>>> networkHandler:Scripts/Managers/Network/NetworkManager.gd
-# Connect all functions
-
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_network_peer_connected")
@@ -21,7 +15,6 @@ func _ready():
 """ CLIENT HANDLING """
 
 var player_name = "Swagmaster"
-
 
 func setup_client(player_name: String):
 	self.player_name = player_name
@@ -37,34 +30,67 @@ func get_client_info() -> Dictionary:
 	return {"name": player_name}
 
 
+remote func game_state_lobby():
+	emit_signal("lobby")
+
+
+remote func game_state_start():
+	emit_signal("game_start")
+
+
 """ SERVER HANDLING """
 
 const MAX_PLAYERS: int = 8
 
 var players: Dictionary = {}
+var lobby_ready_players: Dictionary = {}
 
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
 
-<<<<<<< HEAD:Network/NetworkHandler.gd
-=======
 func start_server():
 	print("Starting server")
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().network_peer = peer
 
->>>>>>> networkHandler:Scripts/Managers/Network/NetworkManager.gd
 
 remote func player_joined(player_info: Dictionary):
 	# Save the player info, and tell people about it
 	var id = get_tree().get_rpc_sender_id()
 	players[id] = player_info
+	lobby_ready_players[id] = false
 	print("Received Player Info from: ", player_info)
 	emit_signal("player_connected", id, player_info)
+	
+	rpc_id(id, "game_state_lobby")
+
+
+remote func set_player_ready(what: bool):
+	var id = get_tree().get_rpc_sender_id()
+	lobby_ready_players[id] = what
+	
+	# If all players are ready, let's start
+	if all_players_ready():
+		rpc("game_state_start")
+		emit_signal("game_start")
+
+
+func all_players_ready() -> bool:
+	
+	for ready in lobby_ready_players.values():
+		print(ready)
+		if not ready:
+			return false
+	
+	return true
+
 
 
 """ SHARED FUNCTIONS """
+
+signal lobby()
+signal game_start()
 
 func end_connection():
 	print("Ending connection")
@@ -102,11 +128,4 @@ func _connection_failed():
 
 
 func _server_disconnected():
-<<<<<<< HEAD:Network/NetworkHandler.gd
-	pass  # Server kicked us; show error and abort.
-=======
 	print("Server disconnected")
-	pass # Server kicked us; show error and abort.
-
-
->>>>>>> networkHandler:Scripts/Managers/Network/NetworkManager.gd
