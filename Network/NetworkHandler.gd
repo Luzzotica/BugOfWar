@@ -23,7 +23,7 @@ func connect_to_server(ip: String, port: String):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, port)
 	get_tree().network_peer = peer
-	
+
 
 func get_client_info() -> Dictionary:
 	return {
@@ -45,21 +45,22 @@ remote func player_joined(player_info: Dictionary):
 	emit_signal("player_connected", id, player_info)
 
 
-
 """ SIGNAL HANDLING """
 
 func _network_peer_connected(id):
-	# Called on both clients and server when a peer connects. Send my info to it.
-#	rpc_id(id, "register_player", my_info)
-	pass
+	print("Person connected with id:", id)
 
 
 func _network_peer_disconnected(id):
-#	player_info.erase(id) # Erase player from info.
-	pass
+	print("Person disconnected with id:", id)
+	assert(get_tree().is_network_server())
+	if players.has(id):
+		players.erase(id)
+		emit_signal("player_disconnected", id)
 
 
 func _connected_to_server():
+	print("Connected to server")
 	# Tell the server our info
 	rpc_id(1, "player_joined", get_client_info())
 
