@@ -6,10 +6,10 @@ const PORT = 4567
 var peer = NetworkedMultiplayerENet.new()
 
 func _ready():
-	get_tree().connect("network_peer_connected", self, "_player_connected")
-	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
-	get_tree().connect("connected_to_server", self, "_connected_ok")
-	get_tree().connect("connection_failed", self, "_connected_fail")
+	get_tree().connect("network_peer_connected", self, "_network_peer_connected")
+	get_tree().connect("network_peer_disconnected", self, "_network_peer_disconnected")
+	get_tree().connect("connected_to_server", self, "_connected_to_server")
+	get_tree().connect("connection_failed", self, "_connection_failed")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
 

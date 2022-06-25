@@ -36,6 +36,8 @@ Global="*res://Scripts/Global.gd"
 NetworkManager="*res://Scripts/Managers/Network/NetworkManager.tscn"
 PlayerControllerManager="*res://Scripts/Managers/PlayerControllerManager.tscn"
 InputManager="*res://Scripts/Managers/InputManager.tscn"
+RandomCoordinateFactory="*res://RandomCoordinateFactory.tscn"
+NaturalDisasterFactory="*res://NaturalDisasterFactory.tscn"
 
 [global]
 
