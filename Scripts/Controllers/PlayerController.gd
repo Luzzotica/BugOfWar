@@ -39,7 +39,9 @@ func _on_frame_input(input: Dictionary):
 
 
 func _on_frame_input_local(input: Dictionary):
-	rpc_unreliable_id(1, "set_input", input)
+	direction = input["d"]
+	grab_pressed = input["g"]
+	special_pressed = input["s"]
 
 
 func _on_reliable_action(info: Dictionary):
