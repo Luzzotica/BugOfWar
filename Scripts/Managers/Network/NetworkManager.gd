@@ -1,12 +1,10 @@
 extends Node2D
 
-<<<<<<< HEAD:Network/NetworkHandler.gd
-=======
+
 const PORT = 4567
 
 var peer = NetworkedMultiplayerENet.new()
 
->>>>>>> networkHandler:Scripts/Managers/Network/NetworkManager.gd
 # Connect all functions
 
 
@@ -46,15 +44,12 @@ var players: Dictionary = {}
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
 
-<<<<<<< HEAD:Network/NetworkHandler.gd
-=======
+
 func start_server():
 	print("Starting server")
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().network_peer = peer
-
->>>>>>> networkHandler:Scripts/Managers/Network/NetworkManager.gd
 
 remote func player_joined(player_info: Dictionary):
 	# Save the player info, and tell people about it
@@ -102,11 +97,7 @@ func _connection_failed():
 
 
 func _server_disconnected():
-<<<<<<< HEAD:Network/NetworkHandler.gd
-	pass  # Server kicked us; show error and abort.
-=======
 	print("Server disconnected")
 	pass # Server kicked us; show error and abort.
 
 
->>>>>>> networkHandler:Scripts/Managers/Network/NetworkManager.gd
