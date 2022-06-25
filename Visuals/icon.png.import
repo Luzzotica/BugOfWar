@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Menu Screen w_o Game Code and Players.png-fb9a55276a878298a2e6a1a3cd95439c.stex"
+path="res://.import/icon.png-06b7dbe324d7ceed02e2d2675a6c6a46.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu Screen w_o Game Code and Players.png"
-dest_files=[ "res://.import/Menu Screen w_o Game Code and Players.png-fb9a55276a878298a2e6a1a3cd95439c.stex" ]
+source_file="res://Visuals/icon.png"
+dest_files=[ "res://.import/icon.png-06b7dbe324d7ceed02e2d2675a6c6a46.stex" ]
 
 [params]
 

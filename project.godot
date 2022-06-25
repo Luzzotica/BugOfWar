@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Bug Of War"
-run/main_scene="res://LandingPage.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Scenes/LandingPage.tscn"
+config/icon="res://Visuals/icon.png"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://Scripts/Global.gd"
 
 [physics]
 
