@@ -7,6 +7,7 @@ var state = 0
 
 signal reliable_action(info)
 
+
 func set_state(state: int):
 	self.state = state
 	generic_actions.visible = false
@@ -15,7 +16,7 @@ func set_state(state: int):
 		generic_actions.visible = true
 	elif state == 1:
 		choose_your_ant.visible = true
-	
+
 
 func _on_Grab_button_down():
 	Input.action_press("grab")
@@ -34,6 +35,4 @@ func _on_Special_button_up():
 
 
 func _on_WorkerAnt_pressed():
-	InputManager.reliable_action({
-		"spawn_ant": "worker_ant"
-	})
+	InputManager.reliable_action({"spawn_ant": "worker_ant"})

@@ -1,9 +1,9 @@
 extends Node2D
 
-
 const PORT = 4567
 
 var peer = NetworkedMultiplayerENet.new()
+
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_network_peer_connected")
@@ -17,6 +17,7 @@ func _ready():
 
 var player_name = "Swagmaster"
 
+
 func setup_client(player_name: String):
 	self.player_name = player_name
 
@@ -29,9 +30,7 @@ func connect_to_server(ip: String):
 
 
 func get_client_info() -> Dictionary:
-	return {
-		"name": player_name
-	}
+	return {"name": player_name}
 
 
 remote func game_state_lobby():
@@ -51,11 +50,13 @@ var lobby_ready_players: Dictionary = {}
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
 
+
 func start_server():
 	print("Starting server")
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_server(PORT, MAX_PLAYERS)
 	get_tree().network_peer = peer
+
 
 remote func player_joined(player_info: Dictionary):
 	# Save the player info, and tell people about it
@@ -63,14 +64,14 @@ remote func player_joined(player_info: Dictionary):
 	players[id] = player_info
 
 	emit_signal("player_connected", id, player_info)
-	
+
 	rpc_id(id, "game_state_lobby")
 
 
 remote func set_player_ready(what: bool):
 	var id = get_tree().get_rpc_sender_id()
 	lobby_ready_players[id] = what
-	
+
 	# If all players are ready, let's start
 	if all_players_ready():
 		rpc("game_state_start")
@@ -81,16 +82,16 @@ func all_players_ready() -> bool:
 	for ready in lobby_ready_players.values():
 		if not ready:
 			return false
-	
-	return true
 
+	return true
 
 
 """ SHARED FUNCTIONS """
 
-signal state_connect()
-signal lobby()
-signal game_start()
+signal state_connect
+signal lobby
+signal game_start
+
 
 func end_connection():
 	print("Ending connection")
@@ -98,6 +99,7 @@ func end_connection():
 
 
 """ SIGNAL HANDLING """
+
 
 func _network_peer_connected(id):
 	print("Person connected with id:", id)
@@ -117,7 +119,7 @@ func _connected_to_server():
 
 
 func _connection_failed():
-	pass # Could not even connect to server; abort.
+	pass  # Could not even connect to server; abort.
 
 
 func _server_disconnected():

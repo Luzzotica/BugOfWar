@@ -15,7 +15,7 @@ onready var pincer_pin_joint: PinJoint2D = $Pincers/PinJoint2D
 onready var name_tag_holder: Node2D = $NameTag
 onready var name_tag: Label = $NameTag/Control/Label
 
-signal death()
+signal death
 
 
 func _process(delta):
@@ -25,7 +25,7 @@ func _process(delta):
 func _physics_process(delta):
 	if controller == null:
 		return
-		
+
 	var vel = controller.direction
 #
 #	if Input.is_action_pressed("move_left"):
@@ -39,14 +39,14 @@ func _physics_process(delta):
 #
 #	if Input.is_action_pressed("move_up"):
 #		vel.y -= speed
-	
+
 	if is_grabbing_something():
 		linear_velocity = vel * speed * hauling_multiplier
 		look_at(get_grabbed_obj_position())
 	else:
 		linear_velocity = vel * speed
 		look_at(position + linear_velocity)
-	
+
 	if controller.grab_pressed:
 		grab()
 	else:
@@ -63,7 +63,7 @@ func get_grabbed_obj_position() -> Vector2:
 
 func take_damage(dmg: int):
 	health -= dmg
-	
+
 	if health <= 0:
 		emit_signal("death")
 		call_deferred("queue_free")
@@ -77,7 +77,7 @@ func grab():
 	# If we already have something, stop
 	if is_grabbing_something():
 		return
-	
+
 	var physics_bodies_in_grab_zone: Array = grab_zone.get_overlapping_bodies()
 
 	if physics_bodies_in_grab_zone.size() == 0:
@@ -103,5 +103,6 @@ func is_grabbable(object: Object) -> bool:
 
 func set_name_tag(tag: String):
 	name_tag.text = tag
+
 
 """ SIGNALS """

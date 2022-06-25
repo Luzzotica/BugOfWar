@@ -8,6 +8,7 @@ export(PackedScene) var ant
 
 var player_controllers: Dictionary = {}
 
+
 func _ready():
 	NetworkManager.connect("player_connected", self, "_on_NetworkManager_PlayerConnected")
 	NetworkManager.connect("player_disconnected", self, "_on_NetworkManager_PlayerDisconnected")
@@ -20,8 +21,9 @@ func create_controller(id: int, player_info: Dictionary) -> PlayerController:
 	var controller: PlayerController = player_controller_scene.instance()
 	controller.name = str(id)
 	add_child(controller)
-	player_controllers[id] = { CONTROLLER: controller }
+	player_controllers[id] = {CONTROLLER: controller}
 	return controller
+
 
 # Called on the client by the server to create the PlayerController
 remote func remote_create_controller():
@@ -39,6 +41,7 @@ func clear_data():
 
 
 """ SIGNALS """
+
 
 func _on_NetworkManager_PlayerConnected(id: int, player_info: Dictionary):
 	var controller = create_controller(id, player_info)

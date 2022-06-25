@@ -44,4 +44,3 @@ func _on_frame_input_local(input: Dictionary):
 
 func _on_reliable_action(info: Dictionary):
 	rpc_id(1, "action", info)
-

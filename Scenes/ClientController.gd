@@ -1,6 +1,6 @@
 extends Node
 
-export (PackedScene) var bug_of_war_controller
+export(PackedScene) var bug_of_war_controller
 
 onready var home: Control = $CanvasLayer/Home
 onready var lobby: Control = $CanvasLayer/Lobby
@@ -19,6 +19,7 @@ var lobby_ready = false
 
 var controller_type = ControllerType.BUG_OF_WAR
 var virtual_controller = null
+
 
 func _ready():
 	NetworkManager.connect("state_connect", self, "_on_state_connect")
@@ -44,12 +45,11 @@ func build_virtual_controller():
 	if controller_type == ControllerType.BUG_OF_WAR:
 		virtual_controller = bug_of_war_controller.instance()
 		controller_container.add_child(virtual_controller)
-		
 
 
 func destory_virtual_controller():
 	if virtual_controller != null:
-		virtual_controller.queue_free();
+		virtual_controller.queue_free()
 		virtual_controller = null
 
 
@@ -60,6 +60,7 @@ func hide_everything():
 
 
 """ SIGNALS """
+
 
 func _on_state_connect():
 	set_controller_state(ControllerState.HOME)
