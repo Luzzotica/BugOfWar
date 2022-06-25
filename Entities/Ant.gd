@@ -9,6 +9,8 @@ const NULL_PATH = NodePath()
 var health: int = 100
 var speed: int = 200
 
+var controller: PlayerController = null
+
 # onready var sprite: Sprite = get_node("Sprite")
 onready var grab_zone: Area2D = $Pincers/GrabZone
 onready var pinsir_pin_joint: PinJoint2D = $Pincers/PinJoint2D
@@ -19,19 +21,22 @@ func _ready():
 
 
 func _physics_process(delta):
-	var vel: Vector2 = Vector2(0, 0)
-
-	if Input.is_action_pressed("move_left"):
-		vel.x -= speed
-
-	if Input.is_action_pressed("move_right"):
-		vel.x += speed
-
-	if Input.is_action_pressed("move_down"):
-		vel.y += speed
-
-	if Input.is_action_pressed("move_up"):
-		vel.y -= speed
+	if controller == null:
+		return
+		
+	var vel = controller.direction
+#
+#	if Input.is_action_pressed("move_left"):
+#		vel.x -= speed
+#
+#	if Input.is_action_pressed("move_right"):
+#		vel.x += speed
+#
+#	if Input.is_action_pressed("move_down"):
+#		vel.y += speed
+#
+#	if Input.is_action_pressed("move_up"):
+#		vel.y -= speed
 
 	linear_velocity = vel.normalized() * speed
 

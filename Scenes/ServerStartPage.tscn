@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Managers/SceneManager.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Pages/ServerStartPage.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -23,10 +23,10 @@ margin_right = 181.0
 margin_bottom = 14.0
 text = "Welcome to the Server Page"
 
-[node name="Button" type="Button" parent="CenterContainer"]
+[node name="Back" type="Button" parent="CenterContainer"]
 margin_top = 18.0
 margin_right = 181.0
 margin_bottom = 38.0
 text = "BACK"
 
-[connection signal="pressed" from="CenterContainer/Button" to="." method="go_to_scene" binds= [ "res://Scenes/LandingPage.tscn" ]]
+[connection signal="pressed" from="CenterContainer/Back" to="." method="_on_Back_pressed"]
