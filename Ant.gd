@@ -34,8 +34,8 @@ func _physics_process(delta):
 	
 	look_at(position + linear_velocity)
 	
-	
-	
+	grab()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,18 +46,21 @@ func take_damage(dmg: int):
 
 
 func grab():
+	if not Input.is_action_pressed("grab"):
+		return 
+	
 	var physics_bodies_in_grab_zone: Array = grab_zone.get_overlapping_bodies()
 	
 	if physics_bodies_in_grab_zone.size() == 0:
-		return 
+		return
 		
 	var grabbable_body: PhysicsBody2D = \
 		try_get_grabbable_body(physics_bodies_in_grab_zone)
 		
-	
-	
-	
+	if grabbable_body:
+		grabbable_body.on_grabbed()
 		
+
 func try_get_grabbable_body(bodies: Array) -> PhysicsBody2D:
 	for body in bodies:
 		if is_grabbable(body):
@@ -65,9 +68,5 @@ func try_get_grabbable_body(bodies: Array) -> PhysicsBody2D:
 	return null
 	
 	
-
-func is_grabbable(object) -> bool:
+func is_grabbable(object: Object) -> bool:
 	return object.has_method("on_grabbed")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
