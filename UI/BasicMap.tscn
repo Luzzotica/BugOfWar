@@ -1,15 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UI/Visuals/Menu Screen w_o Game Code and Players.png" type="Texture" id=1]
+[ext_resource path="res://UI/Visuals/Sand Map 2 (Screenshot bc we can't export).png" type="Texture" id=1]
+[ext_resource path="res://Anthill.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 4.98372 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.5, 299.5 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 41, 300 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -38,16 +36,8 @@ shape = SubResource( 1 )
 
 [node name="Anthills" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Anthills"]
-position = Vector2( 10, 10 )
+[node name="AnthillL" parent="Anthills" instance=ExtResource( 2 )]
 
-[node name="LeftAntHill" type="CollisionShape2D" parent="Anthills/Area2D"]
-position = Vector2( 31, 290 )
-shape = SubResource( 3 )
-
-[node name="Area2D2" type="Area2D" parent="Anthills"]
-position = Vector2( 10, 10 )
-
-[node name="RightAntHill" type="CollisionShape2D" parent="Anthills/Area2D2"]
-position = Vector2( 973, 290 )
-shape = SubResource( 3 )
+[node name="AnthillR" parent="Anthills" instance=ExtResource( 2 )]
+position = Vector2( 1024, 0 )
+scale = Vector2( -1, 1 )
