@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shoe-Blue.png-cc5905477c16ac18b41664d8044c484c.stex"
+path="res://.import/Shoe Shadow.png-35b66ed4004fb06ee5c7f4c99e9a63cc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shoe-Blue.png"
-dest_files=[ "res://.import/Shoe-Blue.png-cc5905477c16ac18b41664d8044c484c.stex" ]
+source_file="res://resources/drawable/Shoe Shadow.png"
+dest_files=[ "res://.import/Shoe Shadow.png-35b66ed4004fb06ee5c7f4c99e9a63cc.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
