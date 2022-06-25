@@ -17,6 +17,7 @@ config/icon="res://Visuals/icon.png"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+NetworkManager="*res://Scripts/Managers/Network/NetworkManager.tscn"
 
 [physics]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Managers/SceneManager.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ClientStartPage.gd" type="Script" id=1]
 
 [node name="ClientStartPage" type="Control"]
 anchor_right = 1.0
@@ -13,25 +13,43 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -89.0
-margin_top = -19.0
+margin_top = -38.0
 margin_right = 89.0
-margin_bottom = 19.0
+margin_bottom = 23.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CenterContainer"]
 margin_right = 178.0
 margin_bottom = 14.0
-text = "Welcome to the Client Page"
+text = "Enter Your Name:"
 
-[node name="TextEdit" type="TextEdit" parent="CenterContainer"]
+[node name="Name" type="LineEdit" parent="CenterContainer"]
 margin_top = 18.0
 margin_right = 178.0
-margin_bottom = 18.0
-
-[node name="Button" type="Button" parent="CenterContainer"]
-margin_top = 22.0
-margin_right = 178.0
 margin_bottom = 42.0
-text = "BACK"
 
-[connection signal="pressed" from="CenterContainer/Button" to="." method="go_to_scene" binds= [ "res://Scenes/LandingPage.tscn" ]]
+[node name="Label2" type="Label" parent="CenterContainer"]
+margin_top = 46.0
+margin_right = 178.0
+margin_bottom = 60.0
+text = "Enter the IP:"
+
+[node name="IP" type="LineEdit" parent="CenterContainer"]
+margin_top = 64.0
+margin_right = 178.0
+margin_bottom = 88.0
+
+[node name="Connect" type="Button" parent="CenterContainer"]
+margin_top = 92.0
+margin_right = 178.0
+margin_bottom = 112.0
+text = "Connect"
+
+[node name="Back" type="Button" parent="CenterContainer"]
+margin_top = 116.0
+margin_right = 178.0
+margin_bottom = 136.0
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/Connect" to="." method="_on_Connect_pressed"]
+[connection signal="pressed" from="CenterContainer/Back" to="." method="go_to_scene" binds= [ "res://Scenes/LandingPage.tscn" ]]
