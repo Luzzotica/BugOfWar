@@ -34,7 +34,7 @@ config/icon="res://resources/drawable/icon.png"
 
 Global="*res://Scripts/Global.gd"
 NetworkManager="*res://Scripts/Managers/NetworkManager.tscn"
-MusicController="*res://Scripts/Managers/MusicManager.tscn"
+MusicManager="*res://Scripts/Managers/MusicManager.tscn"
 PlayerControllerManager="*res://Scripts/Managers/PlayerControllerManager.tscn"
 InputManager="*res://Scripts/Managers/InputManager.tscn"
 RandomCoordinateFactory="*res://Scripts/RandomCoordinateFactory.tscn"
@@ -82,6 +82,11 @@ grab={
 special={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+change_music={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":93,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
