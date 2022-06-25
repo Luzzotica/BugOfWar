@@ -1,0 +1,44 @@
+[gd_scene format=2]
+
+[node name="LandingPage" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -262.5
+margin_top = -200.0
+margin_right = 262.5
+margin_bottom = 200.0
+rect_min_size = Vector2( 525, 400 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 35.0
+margin_bottom = 35.0
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_right = 525.0
+margin_bottom = 14.0
+text = "Bug Of War"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ClientButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 18.0
+margin_right = 525.0
+margin_bottom = 38.0
+text = "Client"
+
+[node name="ServerButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 42.0
+margin_right = 525.0
+margin_bottom = 62.0
+text = "Server"
