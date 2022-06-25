@@ -1,12 +1,13 @@
 extends Node
 
 export(PackedScene) var bug_of_war_controller
+export(PackedScene) var team_selection_button
 
 onready var home: Control = $CanvasLayer/Home
 onready var lobby: Control = $CanvasLayer/Lobby
 onready var controller_container: Control = $CanvasLayer/ControllerHolder
 
-onready var lobbyReady: CheckButton = $CanvasLayer/Lobby/ReadyToRumble
+onready var lobbyReady: Button = $CanvasLayer/Lobby/ReadyToRumble
 
 onready var inputName: LineEdit = $CanvasLayer/Home/CenterContainer/Name
 onready var inputIp: LineEdit = $CanvasLayer/Home/CenterContainer/IP
@@ -45,6 +46,9 @@ func build_virtual_controller():
 	if controller_type == ControllerType.BUG_OF_WAR:
 		virtual_controller = bug_of_war_controller.instance()
 		controller_container.add_child(virtual_controller)
+		# Wire up the controller states
+		PlayerControllerManager.my_player_controller.connect("change_controller_state", virtual_controller, "_on_player_controller_state_change")
+		
 
 
 func destory_virtual_controller():
@@ -58,7 +62,6 @@ func hide_everything():
 	lobby.visible = false
 	controller_container.visible = false
 
-
 """ SIGNALS """
 
 
@@ -66,7 +69,7 @@ func _on_state_connect():
 	set_controller_state(ControllerState.HOME)
 
 
-func _on_lobby():
+func _on_lobby(team_count: int):
 	set_controller_state(ControllerState.LOBBY)
 
 
@@ -86,5 +89,12 @@ func _on_Back_pressed():
 
 func _on_ReadyToRumble_pressed():
 	lobby_ready = not lobby_ready
-	print(lobby_ready)
-	NetworkManager.rpc_id(1, "set_player_ready", lobby_ready)
+	PlayerControllerManager.my_player_controller.set_ready(lobby_ready)
+
+
+func _on_Team1_pressed():
+	PlayerControllerManager.my_player_controller.set_team(1)
+
+
+func _on_Team2_pressed():
+	PlayerControllerManager.my_player_controller.set_team(2)

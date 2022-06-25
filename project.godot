@@ -32,6 +32,7 @@ config/icon="res://resources/drawable/icon.png"
 
 [autoload]
 
+Constants="*res://Scripts/Constants.tscn"
 Global="*res://Scripts/Global.gd"
 NetworkManager="*res://Scripts/Managers/NetworkManager.tscn"
 MusicController="*res://Scripts/Managers/MusicManager.tscn"
