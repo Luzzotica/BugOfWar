@@ -23,10 +23,15 @@ margin_right = 178.0
 margin_bottom = 14.0
 text = "Welcome to the Client Page"
 
-[node name="Button" type="Button" parent="CenterContainer"]
+[node name="TextEdit" type="TextEdit" parent="CenterContainer"]
 margin_top = 18.0
 margin_right = 178.0
-margin_bottom = 38.0
+margin_bottom = 18.0
+
+[node name="Button" type="Button" parent="CenterContainer"]
+margin_top = 22.0
+margin_right = 178.0
+margin_bottom = 42.0
 text = "BACK"
 
 [connection signal="pressed" from="CenterContainer/Button" to="." method="go_to_scene" binds= [ "res://Scenes/LandingPage.tscn" ]]
