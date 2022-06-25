@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="Bug Of War"
-run/main_scene="res://Scenes/LandingPage.tscn"
-config/icon="res://Visuals/icon.png"
+run/main_scene="res://UI/Server/LandingPage.tscn"
+config/icon="res://UI/Visuals/icon.png"
 
 [autoload]
 
