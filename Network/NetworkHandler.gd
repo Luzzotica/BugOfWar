@@ -1,7 +1,7 @@
 extends Node2D
 
-
 # Connect all functions
+
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -15,6 +15,7 @@ func _ready():
 
 var player_name = "Swagmaster"
 
+
 func setup_client(player_name: String):
 	self.player_name = player_name
 
@@ -26,9 +27,7 @@ func connect_to_server(ip: String, port: String):
 
 
 func get_client_info() -> Dictionary:
-	return {
-		"name": player_name
-	}
+	return {"name": player_name}
 
 
 """ SERVER HANDLING """
@@ -38,6 +37,7 @@ var players: Dictionary = {}
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
 
+
 remote func player_joined(player_info: Dictionary):
 	# Save the player info, and tell people about it
 	var id = get_tree().get_rpc_sender_id()
@@ -46,6 +46,7 @@ remote func player_joined(player_info: Dictionary):
 
 
 """ SIGNAL HANDLING """
+
 
 func _network_peer_connected(id):
 	print("Person connected with id:", id)
@@ -66,10 +67,8 @@ func _connected_to_server():
 
 
 func _connection_failed():
-	pass # Could not even connect to server; abort.
+	pass  # Could not even connect to server; abort.
 
 
 func _server_disconnected():
-	pass # Server kicked us; show error and abort.
-
-
+	pass  # Server kicked us; show error and abort.
