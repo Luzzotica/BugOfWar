@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PlayerController",
 "language": "GDScript",
-"path": "res://Scripts/PlayerController.gd"
+"path": "res://Scripts/Controllers/PlayerController.gd"
 }, {
 "base": "Control",
 "class": "VirtualJoystick",
@@ -27,15 +27,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Bug Of War"
-run/main_scene="res://Root.tscn"
+run/main_scene="res://Scenes/LandingPage.tscn"
 config/icon="res://Visuals/icon.png"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
 NetworkManager="*res://Scripts/Managers/Network/NetworkManager.tscn"
-PlayerControllerManager="*res://Scripts/Managers/PlayerControllerManager.tscn"
+MusicController="*res://MusicController.tscn"
 InputManager="*res://Scripts/Managers/InputManager.tscn"
+Global="*res://Scripts/Global.gd"
 
 [global]
 
@@ -77,7 +77,3 @@ special={
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
