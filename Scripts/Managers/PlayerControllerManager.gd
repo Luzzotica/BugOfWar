@@ -50,6 +50,7 @@ func _on_NetworkManager_PlayerConnected(id: int, player_info: Dictionary):
 	a.controller = controller
 	player_controllers[id][ANT] = a
 	add_child(a)
+	a.set_name_tag(player_info["name"])
 
 
 func _on_NetworkManager_PlayerDisconnected(id: int):

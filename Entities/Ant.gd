@@ -1,27 +1,25 @@
 extends RigidBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 const NULL_PATH = NodePath()
 
 export var health: int = 100
-export var speed: int = 200
+export var speed: int = 400
 export var hauling_multiplier: float = 0.5
 
 var controller: PlayerController = null
-
-var hauling = false
+var player_name_tag: String = ""
 
 # onready var sprite: Sprite = get_node("Sprite")
 onready var grab_zone: Area2D = $Pincers/GrabZone
 onready var pincer_pin_joint: PinJoint2D = $Pincers/PinJoint2D
+onready var name_tag_holder: Node2D = $NameTag
+onready var name_tag: Label = $NameTag/Control/Label
 
 signal death()
 
-func _ready():
-	pass
+
+func _process(delta):
+	name_tag_holder.global_rotation = 0
 
 
 func _physics_process(delta):
@@ -41,9 +39,7 @@ func _physics_process(delta):
 #
 #	if Input.is_action_pressed("move_up"):
 #		vel.y -= speed
-
 	
-
 	if is_grabbing_something():
 		linear_velocity = vel.normalized() * speed * hauling_multiplier
 		look_at(get_grabbed_obj_position())
@@ -79,7 +75,7 @@ func let_go():
 
 func grab():
 	# If we already have something, stop
-	if hauling:
+	if is_grabbing_something():
 		return
 	
 	var physics_bodies_in_grab_zone: Array = grab_zone.get_overlapping_bodies()
@@ -90,7 +86,6 @@ func grab():
 	var grabbable_body: PhysicsBody2D = try_get_grabbable_body(physics_bodies_in_grab_zone)
 
 	if grabbable_body:
-		hauling = true
 		grabbable_body.on_grabbed()
 		pincer_pin_joint.node_b = grabbable_body.get_path()
 
@@ -105,5 +100,8 @@ func try_get_grabbable_body(bodies: Array) -> PhysicsBody2D:
 func is_grabbable(object: Object) -> bool:
 	return object.has_method("on_grabbed")
 
+
+func set_name_tag(tag: String):
+	name_tag.text = tag
 
 """ SIGNALS """
