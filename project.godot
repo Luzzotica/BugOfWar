@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
 [application]
 
 config/name="Bug Of War"
 config/icon="res://icon.png"
+
+[autoload]
+
+RandomCoordinateFactory="*res://RandomCoordinateFactory.tscn"
+NaturalDisasterFactory="*res://NaturalDisasterFactory.tscn"
 
 [physics]
 
