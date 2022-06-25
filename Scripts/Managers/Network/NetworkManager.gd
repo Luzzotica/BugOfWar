@@ -1,5 +1,6 @@
 extends Node2D
 
+const PORT = 4567
 
 # Connect all functions
 
@@ -19,9 +20,9 @@ func setup_client(player_name: String):
 	self.player_name = player_name
 
 
-func connect_to_server(ip: String, port: String):
+func connect_to_server(ip: String):
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(ip, port)
+	peer.create_client(ip, PORT)
 	get_tree().network_peer = peer
 
 
