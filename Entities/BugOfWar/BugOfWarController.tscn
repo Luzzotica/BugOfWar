@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/BugOfWar/BugOfWarController.gd" type="Script" id=2]
+
+[node name="BugOfWarController" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Virtual joystick" parent="." instance=ExtResource( 1 )]
+anchor_top = 0.0
+anchor_right = 0.5
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+joystick_mode = 1
+action_left = "a"
+action_right = "d"
+action_up = "w"
+action_down = "s"
+
+[node name="GenericActions" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GenericActions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Grab" type="Button" parent="GenericActions/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 298.0
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+text = "Grab"
+
+[node name="Special" type="Button" parent="GenericActions/VBoxContainer"]
+margin_top = 302.0
+margin_right = 512.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+text = "Special"
+
+[node name="ChooseAnt" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChooseAnt"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="WorkerAnt" type="Button" parent="ChooseAnt/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+text = "Worker Ant"
+
+[connection signal="button_down" from="GenericActions/VBoxContainer/Grab" to="." method="_on_Grab_button_down"]
+[connection signal="button_up" from="GenericActions/VBoxContainer/Grab" to="." method="_on_Grab_button_up"]
+[connection signal="button_down" from="GenericActions/VBoxContainer/Special" to="." method="_on_Special_button_down"]
+[connection signal="button_up" from="GenericActions/VBoxContainer/Special" to="." method="_on_Special_button_up"]
+[connection signal="pressed" from="ChooseAnt/VBoxContainer/WorkerAnt" to="." method="_on_WorkerAnt_pressed"]

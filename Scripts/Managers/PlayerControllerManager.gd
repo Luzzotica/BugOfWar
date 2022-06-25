@@ -44,13 +44,6 @@ func _on_NetworkManager_PlayerConnected(id: int, player_info: Dictionary):
 	var controller = create_controller(id, player_info)
 	controller.setup_server(player_info)
 	rpc_id(id, "remote_create_controller")
-	
-	# Make an ant
-	var a = ant.instance()
-	a.controller = controller
-	player_controllers[id][ANT] = a
-	add_child(a)
-	a.set_name_tag(player_info["name"])
 
 
 func _on_NetworkManager_PlayerDisconnected(id: int):
@@ -58,6 +51,18 @@ func _on_NetworkManager_PlayerDisconnected(id: int):
 	player_controllers[id][CONTROLLER].queue_free()
 	player_controllers[id][ANT].queue_free()
 	player_controllers.erase(id)
+
+
+func _on_NetworkManager_game_start():
+	# Make an ant
+#	var a = ant.instance()
+#	a.controller = controller
+#	player_controllers[id][ANT] = a
+#	add_child(a)
+#	a.set_name_tag(player_info["name"])
+
+	# Tell everyone that the game has started!
+	pass
 
 
 func _on_state_connect():

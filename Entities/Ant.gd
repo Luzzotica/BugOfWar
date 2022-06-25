@@ -41,10 +41,10 @@ func _physics_process(delta):
 #		vel.y -= speed
 	
 	if is_grabbing_something():
-		linear_velocity = vel.normalized() * speed * hauling_multiplier
+		linear_velocity = vel * speed * hauling_multiplier
 		look_at(get_grabbed_obj_position())
 	else:
-		linear_velocity = vel.normalized() * speed
+		linear_velocity = vel * speed
 		look_at(position + linear_velocity)
 	
 	if controller.grab_pressed:

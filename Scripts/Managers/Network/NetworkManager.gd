@@ -21,6 +21,7 @@ func setup_client(player_name: String):
 
 
 func connect_to_server(ip: String):
+	print("Connecting to server")
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, PORT)
 	get_tree().network_peer = peer
@@ -77,9 +78,7 @@ remote func set_player_ready(what: bool):
 
 
 func all_players_ready() -> bool:
-	
 	for ready in lobby_ready_players.values():
-		print(ready)
 		if not ready:
 			return false
 	
@@ -110,7 +109,6 @@ func _network_peer_disconnected(id):
 		return
 	
 	print("Person disconnected with id:", id)
-	assert(get_tree().is_network_server())
 	if players.has(id):
 		players.erase(id)
 		emit_signal("player_disconnected", id)
