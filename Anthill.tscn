@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 41, 300 )
+
+[node name="Anthill" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 10, 10 )
+
+[node name="LeftAntHill" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 31, 290 )
+shape = SubResource( 1 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2( 10, 10 )
+
+[node name="RightAntHill" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 973, 290 )
+shape = SubResource( 1 )
