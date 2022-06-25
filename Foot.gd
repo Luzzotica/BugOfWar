@@ -6,8 +6,9 @@ extends Area2D
 # var b = "text"
 var time_until_impact = 5.0
 
-func setup(origin: Vector2):
-	global_position = origin
+func setup(origin: Vector2, rotation: float):
+	set_global_position(origin)
+	set_rotation(rotation)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,4 +28,10 @@ func _process(delta):
 		pass
 
 func _do_stomp():
+	var to_kill = get_overlapping_bodies()
 	
+	for body in to_kill:
+		# check if it has the property
+		if "death" in body:
+			# kill the object
+			body.death()

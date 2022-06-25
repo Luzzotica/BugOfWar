@@ -11,7 +11,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func get_point_in_area(area: Area2D):
+func get_point_in_area(area: Area2D) -> Vector2:
 	# get the size of the shape
 	var extent = area.shape.extents
 	# get the center, but then modify it to be the corner of the area

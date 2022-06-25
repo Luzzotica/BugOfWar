@@ -52,6 +52,7 @@ func _reset_disaster_timer():
 func _spawn_disaster():
 	# get disaster origin
 	var origin = RandomCoordinateFactory.get_point_in_area(disaster_area)
+	var rotation = rng.randf_range(0,180)
 	# select a disaster type
 	# spawn that object, and let it go do its thing
 	var disaster_type = rng.randi_range(0,2)
@@ -70,7 +71,7 @@ func _spawn_disaster():
 		print("Invalid disaster type: ", disaster_type)
 	
 	# setup the instance with the origin
-	disaster_instance.setup(origin)
+	disaster_instance.setup(origin, rotation)
 	# add the disaster to the disaster area
 	disaster_area.add_child(disaster_instance)
 

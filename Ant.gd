@@ -43,7 +43,12 @@ func _ready():
 
 func take_damage(dmg: int):
 	health -= dmg
+	
+	if health <= 0:
+		death()
 
+func death():
+	pass
 
 func grab():
 	var physics_bodies_in_grab_zone: Array = grab_zone.get_overlapping_bodies()
