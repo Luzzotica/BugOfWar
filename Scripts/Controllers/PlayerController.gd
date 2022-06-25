@@ -19,6 +19,10 @@ func setup_client():
 	InputManager.connect("reliable_action", self, "_on_reliable_action")
 
 
+func setup_local():
+	InputManager.connect("frame_input", self, "_on_frame_input_local")
+
+
 remote func set_input(input: Dictionary):
 #	print("Moving: ", dir)
 	direction = input["d"]
@@ -34,6 +38,9 @@ func _on_frame_input(input: Dictionary):
 	rpc_unreliable_id(1, "set_input", input)
 
 
+func _on_frame_input_local(input: Dictionary):
+	rpc_unreliable_id(1, "set_input", input)
+
+
 func _on_reliable_action(info: Dictionary):
 	rpc_id(1, "action", info)
-
