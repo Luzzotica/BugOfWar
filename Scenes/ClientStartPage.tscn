@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/ClientStartPage.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Pages/ClientStartPage.gd" type="Script" id=1]
 
 [node name="ClientStartPage" type="Control"]
 anchor_right = 1.0
@@ -27,6 +27,7 @@ text = "Enter Your Name:"
 margin_top = 18.0
 margin_right = 178.0
 margin_bottom = 42.0
+text = "Swagmaster"
 
 [node name="Label2" type="Label" parent="CenterContainer"]
 margin_top = 46.0
@@ -38,6 +39,7 @@ text = "Enter the IP:"
 margin_top = 64.0
 margin_right = 178.0
 margin_bottom = 88.0
+text = "127.0.0.1"
 
 [node name="Connect" type="Button" parent="CenterContainer"]
 margin_top = 92.0
@@ -52,4 +54,4 @@ margin_bottom = 136.0
 text = "Back"
 
 [connection signal="pressed" from="CenterContainer/Connect" to="." method="_on_Connect_pressed"]
-[connection signal="pressed" from="CenterContainer/Back" to="." method="go_to_scene" binds= [ "res://Scenes/LandingPage.tscn" ]]
+[connection signal="pressed" from="CenterContainer/Back" to="." method="_on_Back_pressed"]
