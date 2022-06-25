@@ -72,6 +72,9 @@ func _network_peer_connected(id):
 
 
 func _network_peer_disconnected(id):
+	if (not get_tree().is_network_server()):
+		return
+	
 	print("Person disconnected with id:", id)
 	assert(get_tree().is_network_server())
 	if players.has(id):
