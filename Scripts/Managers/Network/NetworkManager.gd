@@ -1,18 +1,10 @@
 extends Node2D
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 const PORT = 4567
 
 var peer = NetworkedMultiplayerENet.new()
 
-<<<<<<< HEAD
-# Connect all functions
-
-=======
->>>>>>> master
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
@@ -52,6 +44,7 @@ remote func game_state_start():
 """ SERVER HANDLING """
 
 var players: Dictionary = {}
+const MAX_PLAYERS: int = 8
 var lobby_ready_players: Dictionary = {}
 
 signal player_connected(id, player_info)

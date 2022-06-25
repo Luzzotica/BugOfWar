@@ -12,7 +12,7 @@ func _ready():
 
 func load_music():
 	tracks = Array()
-	var dir_path = "res://AudioResources/BackgroundMusic"
+	var dir_path = "res://resources/audio/BackgroundMusic/"
 	var dir = Directory.new()
 	dir.open(dir_path)
 	dir.list_dir_begin()
