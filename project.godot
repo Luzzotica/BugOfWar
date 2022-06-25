@@ -27,17 +27,18 @@ _global_script_class_icons={
 [application]
 
 config/name="Bug Of War"
-run/main_scene="res://Root.tscn"
+run/main_scene="res://Entities/BugOfWar/BugOfWarLandingPage.tscn"
 config/icon="res://resources/drawable/icon.png"
 
 [autoload]
 
-NetworkManager="*res://Scenes/Managers/Network/NetworkManager.tscn"
-MusicController="*res://Scenes/Controllers/MusicController.tscn"
-InputManager="*res://Scenes/Managers/InputManager.tscn"
 Global="*res://Scripts/Global.gd"
-RandomCoordinateFactory="*res://Scenes/RandomCoordinateFactory.tscn"
-NaturalDisasterFactory="*res://Entities/Disasters/NaturalDisasterFactory.tscn"
+NetworkManager="*res://Scripts/Managers/NetworkManager.tscn"
+MusicController="*res://Scripts/Managers/MusicManager.tscn"
+PlayerControllerManager="*res://Scripts/Managers/PlayerControllerManager.tscn"
+InputManager="*res://Scripts/Managers/InputManager.tscn"
+RandomCoordinateFactory="*res://Scripts/RandomCoordinateFactory.tscn"
+NaturalDisasterFactory="*res://Entities/BugOfWar/Disasters/NaturalDisasterFactory.tscn"
 
 [global]
 

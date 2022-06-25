@@ -3,7 +3,6 @@
 [ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Controllers/ClientController.gd" type="Script" id=2]
 
-
 [node name="ClientController" type="Node2D"]
 script = ExtResource( 2 )
 bug_of_war_controller = ExtResource( 1 )

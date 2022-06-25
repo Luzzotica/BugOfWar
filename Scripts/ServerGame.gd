@@ -7,4 +7,4 @@ func _ready():
 
 func _on_Back_pressed():
 	NetworkManager.end_connection()
-	Global.goto_scene("res://Scenes/LandingPage.tscn")
+	Global.goto_scene("res://Entities/BugOfWar/BugOfWarLandingPage.tscn")
