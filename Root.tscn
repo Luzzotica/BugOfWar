@@ -1,3 +1,52 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ant.gd" type="Script" id=1]
+[ext_resource path="res://Food.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 31.5, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6.5, 24 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 96, 96 )
 
 [node name="Root" type="Node2D"]
+
+[node name="Ant" type="RigidBody2D" parent="."]
+position = Vector2( 136, 204 )
+script = ExtResource( 1 )
+
+[node name="Icon" type="Sprite" parent="Ant"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ant"]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 4 )
+
+[node name="Pincers" type="Node2D" parent="Ant"]
+position = Vector2( 39, 0 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Ant/Pincers"]
+node_a = NodePath("../..")
+
+[node name="Icon" type="Sprite" parent="Ant/Pincers/PinJoint2D"]
+scale = Vector2( 0.277344, 0.242188 )
+
+[node name="GrabZone" type="Area2D" parent="Ant/Pincers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ant/Pincers/GrabZone"]
+shape = SubResource( 2 )
+
+[node name="Food" type="RigidBody2D" parent="."]
+position = Vector2( 301, 92 )
+script = ExtResource( 3 )
+
+[node name="Icon" type="Sprite" parent="Food"]
+position = Vector2( -1, -1.00001 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Food"]
+position = Vector2( -1, -1 )
+shape = SubResource( 3 )

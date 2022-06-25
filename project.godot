@@ -11,12 +11,42 @@ config_version=4
 [application]
 
 config/name="Bug Of War"
-run/main_scene="res://Scenes/LandingPage.tscn"
+run/main_scene="res://Root.tscn"
 config/icon="res://Visuals/icon.png"
 
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+NetworkManager="*res://Scripts/Managers/Network/NetworkManager.tscn"
+PlayerControllerManager="*res://Scripts/Managers/PlayerControllerManager.tscn"
+InputManager="*res://Scripts/Managers/InputManager.tscn"
+
+[global]
+
+root=false
+
+[input]
+
+w={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+a={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+s={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+d={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 
