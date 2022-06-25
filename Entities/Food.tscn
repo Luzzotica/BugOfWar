@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Entities/Food.gd" type="Script" id=1]
-[ext_resource path="res://Visuals/icon.png" type="Texture" id=2]
+[ext_resource path="res://resources/drawable/icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 96, 96 )

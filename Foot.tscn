@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Foot.gd" type="Script" id=1]
+[ext_resource path="res://Shoe-Blue.png" type="Texture" id=2]
+
+[node name="Foot" type="Area2D"]
+position = Vector2( -0.20126, -0.0670853 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 193.78, -43.267 )
+scale = Vector2( 0.969512, 0.98444 )
+polygon = PoolVector2Array( -238.121, 72.1609, -236.817, 49.0383, -242.686, 23.5071, -242.034, -2.50575, -238.61, -21.9351, -232.578, -39.9193, -224.588, -51.6412, -215.784, -59.3487, -202.74, -61.4362, -187.251, -55.8161, -178.283, -47.3057, -166.218, -23.2197, -162.468, -7.0018, -160.837, 5.68349, -161.327, 22.062, -161.979, 36.5136, -165.892, 58.9939, -168.011, 105.239, -170.62, 123.384, -175.675, 138.638, -183.99, 149.557, -195.077, 158.549, -206.164, 161.921, -219.208, 160.958, -228.501, 155.338, -236.491, 145.222, -241.219, 130.288, -241.871, 99.7795 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 5.35887, 12.8391 )
+scale = Vector2( 0.589616, 0.571176 )
+texture = ExtResource( 2 )
