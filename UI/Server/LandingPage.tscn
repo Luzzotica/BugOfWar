@@ -43,5 +43,5 @@ margin_right = 525.0
 margin_bottom = 222.0
 text = "Server"
 
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/ClientButton" to="NinePatchRect/VBoxContainer" method="go_to_scene" binds= [ "res://Scenes/ClientStartPage.tscn" ]]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/ServerButton" to="NinePatchRect/VBoxContainer" method="go_to_scene" binds= [ "res://Scenes/ServerStartPage.tscn" ]]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/ClientButton" to="NinePatchRect/VBoxContainer" method="go_to_scene" binds= [ "res://UI/Server/LobbyPlayer.tscn" ]]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/ServerButton" to="NinePatchRect/VBoxContainer" method="go_to_scene" binds= [ "res://UI/Server/Lobby.tscn" ]]
