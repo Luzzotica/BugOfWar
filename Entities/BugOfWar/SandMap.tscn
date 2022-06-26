@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://Entities/BugOfWar/BattleMusicManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/drawable/Sand Map 2 (Screenshot bc we can't export).png" type="Texture" id=2]
 [ext_resource path="res://Entities/BugOfWar/BugOfWarGame.gd" type="Script" id=3]
 [ext_resource path="res://Entities/BugOfWar/Anthill.tscn" type="PackedScene" id=4]
@@ -68,5 +69,7 @@ shape = SubResource( 3 )
 position = Vector2( 518, 278 )
 
 [node name="SpawnTimer" type="Timer" parent="FoodSpawnArea"]
+
+[node name="BattleMusicManager" parent="." instance=ExtResource( 1 )]
 
 [connection signal="timeout" from="FoodSpawnArea/SpawnTimer" to="FoodSpawnArea" method="_on_SpawnTimer_timeout"]

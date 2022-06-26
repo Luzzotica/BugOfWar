@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://resources/drawable/Sand Map 2 (Screenshot bc we can't export).png" type="Texture" id=2]
 [ext_resource path="res://Entities/BugOfWar/BugOfWarGame.gd" type="Script" id=3]
 [ext_resource path="res://Entities/BugOfWar/Anthill.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/BugOfWar/Ant.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/BugOfWar/BattleMusicManager.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 4.98372 )
@@ -47,3 +48,5 @@ position = Vector2( 1024, 0 )
 scale = Vector2( -1, 1 )
 
 [node name="AntHolder" type="Node2D" parent="."]
+
+[node name="BattleMusicManager" parent="." instance=ExtResource( 6 )]
