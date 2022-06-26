@@ -55,11 +55,11 @@ func _physics_process(delta):
 
 
 func is_grabbing_something() -> bool:
-	return pincer_pin_joint.node_b != NULL_PATH
+	return pincer_pin_joint.node_b != NULL_PATH and get_node(pincer_pin_joint.node_b) != null
 
 
 func get_grabbed_obj_position() -> Vector2:
-	return get_node(pincer_pin_joint.node_b).position
+	return get_node(pincer_pin_joint.node_b).global_position
 
 
 func take_damage(dmg: int):
