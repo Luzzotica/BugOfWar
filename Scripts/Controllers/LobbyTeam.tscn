@@ -33,15 +33,3 @@ margin_right = 1003.0
 margin_bottom = 588.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="LobbyTeamMember" parent="VBoxContainer/TeamMembers" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1003.0
-
-[node name="LobbyTeamMember2" parent="VBoxContainer/TeamMembers" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 284.0
-margin_right = 1003.0
-margin_bottom = 284.0
