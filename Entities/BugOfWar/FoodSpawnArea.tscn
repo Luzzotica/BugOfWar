@@ -4,7 +4,7 @@
 [ext_resource path="res://Entities/BugOfWar/Food.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 314, 213.25 )
+extents = Vector2( 253, 213.25 )
 
 [node name="FoodSpawnArea" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,7 +14,7 @@ Food = ExtResource( 2 )
 position = Vector2( 519, 278 )
 
 [node name="Shape" type="CollisionShape2D" parent="SpawnArea"]
-position = Vector2( -9, 20.75 )
+position = Vector2( -15, 20.75 )
 shape = SubResource( 3 )
 
 [node name="FoodGroup" type="Node2D" parent="."]

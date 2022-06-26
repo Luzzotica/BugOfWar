@@ -16,10 +16,10 @@ worker_ant = ExtResource( 3 )
 rotation = 0.928515
 scale = Vector2( 0.4, 0.4 )
 
-[node name="Anthill Area" type="Area2D" parent="Scale"]
+[node name="AnthillArea" type="Area2D" parent="Scale"]
 rotation = -0.98262
 
-[node name="Collider" type="CollisionShape2D" parent="Scale/Anthill Area"]
+[node name="Collider" type="CollisionShape2D" parent="Scale/AnthillArea"]
 position = Vector2( 0.5, -7 )
 shape = SubResource( 1 )
 

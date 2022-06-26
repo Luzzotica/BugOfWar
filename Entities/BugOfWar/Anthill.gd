@@ -4,10 +4,10 @@ export(PackedScene) var worker_ant
 export(Color) var color
 
 
-onready var spawn_point: Node2D = $ScaleSpawnPoint
+onready var spawn_point: Node2D = $Scale/SpawnPoint
 var team_points: int = 0
 
-onready var anthill_area: Area2D = $"Anthill Area"
+onready var anthill_area: Area2D = $Scale/AnthillArea
 
 
 func _ready():
@@ -59,6 +59,7 @@ func spawn_ant(controller: PlayerController, type: String):
 			ant.controller = controller
 			ant.global_position = spawn_point.global_position
 			ant.set_color(color)
+			ant.set_name(controller.player_info[Constants.PLAYER_INFO_NAME])
 			
 			# Tell the player to update the controller state
 			controller.rpc_id(controller.player_network_id, "set_controller_state", 0)
