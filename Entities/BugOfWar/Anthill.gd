@@ -4,7 +4,7 @@ export(PackedScene) var worker_ant
 export(Color) var color
 
 
-onready var spawn_point: Node2D = $SpawnPoint
+onready var spawn_point: Node2D = $ScaleSpawnPoint
 var team_points: int = 0
 
 onready var anthill_area: Area2D = $"Anthill Area"

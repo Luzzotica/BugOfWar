@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/BugOfWar/FoodSpawnArea.gd" type="Script" id=1]
+[ext_resource path="res://Entities/BugOfWar/Food.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 314, 213.25 )
+
+[node name="FoodSpawnArea" type="Node2D"]
+script = ExtResource( 1 )
+Food = ExtResource( 2 )
+
+[node name="SpawnArea" type="Area2D" parent="."]
+position = Vector2( 519, 278 )
+
+[node name="Shape" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2( -9, 20.75 )
+shape = SubResource( 3 )
+
+[node name="FoodGroup" type="Node2D" parent="."]
+position = Vector2( 518, 278 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
