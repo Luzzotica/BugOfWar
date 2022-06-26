@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/drawable/Sand Map 2 (Screenshot bc we can't export).png" type="Texture" id=2]
+[ext_resource path="res://Entities/BugOfWar/BugOfWarGame.gd" type="Script" id=3]
+[ext_resource path="res://Entities/BugOfWar/Anthill.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/BugOfWar/Ant.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/BugOfWar/Disasters/NaturalDisasterFactory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/BugOfWar/BattleMusicManager.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 4.98372 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.5, 299.5 )
+
+[node name="BasicMap" type="Node2D"]
+script = ExtResource( 3 )
+worker_ant = ExtResource( 5 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="TopBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 512, 0 )
+shape = SubResource( 1 )
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 0, 299.5 )
+shape = SubResource( 2 )
+
+[node name="RightBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 1024, 299.5 )
+shape = SubResource( 2 )
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 512, 600 )
+shape = SubResource( 1 )
+
+[node name="Anthills" type="Node2D" parent="."]
+
+[node name="AnthillL" parent="Anthills" instance=ExtResource( 4 )]
+
+[node name="AnthillR" parent="Anthills" instance=ExtResource( 4 )]
+position = Vector2( 1024, 0 )
+scale = Vector2( -1, 1 )
+
+[node name="AntHolder" type="Node2D" parent="."]
+
+[node name="Ant" parent="." instance=ExtResource( 5 )]
+position = Vector2( 300, 309 )
+
+[node name="NaturalDisasterFactory" parent="." instance=ExtResource( 6 )]
+
+[node name="BattleMusicManager" parent="." instance=ExtResource( 7 )]

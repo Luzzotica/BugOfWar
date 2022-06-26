@@ -30,14 +30,15 @@ func connect_to_server(ip: String):
 
 
 func get_client_info() -> Dictionary:
-	return {"name": player_name}
+	return {Constants.PLAYER_INFO_NAME: player_name}
 
 
-remote func game_state_lobby():
-	emit_signal("lobby")
+remote func game_state_lobby(team_count: int):
+	emit_signal("lobby", team_count)
 
 
-remote func game_state_start():
+remotesync func game_state_start():
+	print('GAME STARTOOOO')
 	emit_signal("game_start")
 
 
@@ -45,7 +46,6 @@ remote func game_state_start():
 
 var players: Dictionary = {}
 const MAX_PLAYERS: int = 8
-var lobby_ready_players: Dictionary = {}
 
 signal player_connected(id, player_info)
 signal player_disconnected(id, player_info)
@@ -65,32 +65,14 @@ remote func player_joined(player_info: Dictionary):
 
 	emit_signal("player_connected", id, player_info)
 
-	rpc_id(id, "game_state_lobby")
-
-
-remote func set_player_ready(what: bool):
-	var id = get_tree().get_rpc_sender_id()
-	lobby_ready_players[id] = what
-
-	# If all players are ready, let's start
-	if all_players_ready():
-		rpc("game_state_start")
-		emit_signal("game_start")
-
-
-func all_players_ready() -> bool:
-	for ready in lobby_ready_players.values():
-		if not ready:
-			return false
-
-	return true
+	rpc_id(id, "game_state_lobby", 2)
 
 
 """ SHARED FUNCTIONS """
 
-signal state_connect
-signal lobby
-signal game_start
+signal state_connect()
+signal lobby(team_count)
+signal game_start()
 
 
 func end_connection():
