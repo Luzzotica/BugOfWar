@@ -14,6 +14,7 @@ onready var grab_zone: Area2D = $Pincers/GrabZone
 onready var pincer_pin_joint: PinJoint2D = $Pincers/PinJoint2D
 onready var name_tag_holder: Node2D = $NameTag
 onready var name_tag: Label = $NameTag/Control/Label
+onready var sprite: Sprite = $Icon
 
 signal death
 
@@ -45,7 +46,7 @@ func _physics_process(delta):
 		look_at(get_grabbed_obj_position())
 	else:
 		linear_velocity = vel * speed
-		look_at(position + linear_velocity)
+		look_at(global_position + linear_velocity)
 
 	if controller.grab_pressed:
 		grab()
@@ -54,11 +55,11 @@ func _physics_process(delta):
 
 
 func is_grabbing_something() -> bool:
-	return pincer_pin_joint.node_b != NULL_PATH
+	return pincer_pin_joint.node_b != NULL_PATH and get_node(pincer_pin_joint.node_b) != null
 
 
 func get_grabbed_obj_position() -> Vector2:
-	return get_node(pincer_pin_joint.node_b).position
+	return get_node(pincer_pin_joint.node_b).global_position
 
 
 func take_damage(dmg: int):
@@ -103,6 +104,14 @@ func is_grabbable(object: Object) -> bool:
 
 func set_name_tag(tag: String):
 	name_tag.text = tag
+
+
+func set_color(c: Color):
+	sprite.self_modulate = c
+
+
+func set_controller(cont: PlayerController):
+	PlayerControllerManager.player_controllers[cont.player_network_id]
 
 
 """ SIGNALS """

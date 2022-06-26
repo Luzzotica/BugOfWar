@@ -11,7 +11,7 @@ const fade_rate = (vol - min_vol) / 3
 func _ready():
 	if tracks == null:
 		load_music()
-	if music == null:
+	if (music== null || !$Music.playing):
 		play_track(2)
 
 
@@ -38,6 +38,10 @@ func play_track(id: int):
 
 
 func play_music(track: Resource):
+	if (music == track):
+		if(!$Music.playing):
+			$Music.play()
+		return
 	music = track
 	$Music.stream = music
 	$Music.volume_db = vol

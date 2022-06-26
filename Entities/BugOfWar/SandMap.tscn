@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Entities/BugOfWar/BattleMusicManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/drawable/Sand Map 2 (Screenshot bc we can't export).png" type="Texture" id=2]
+[ext_resource path="res://Entities/BugOfWar/BugOfWarGame.gd" type="Script" id=3]
+[ext_resource path="res://Entities/BugOfWar/Anthill.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/BugOfWar/Ant.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/BugOfWar/FoodSpawnArea.gd" type="Script" id=6]
+[ext_resource path="res://Entities/BugOfWar/Food.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 4.98372 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.5, 299.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 314, 213.25 )
+
+[node name="BasicMap" type="Node2D"]
+script = ExtResource( 3 )
+worker_ant = ExtResource( 5 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="TopBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 512, 0 )
+shape = SubResource( 1 )
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 0, 299.5 )
+shape = SubResource( 2 )
+
+[node name="RightBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 1024, 299.5 )
+shape = SubResource( 2 )
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2( 512, 600 )
+shape = SubResource( 1 )
+
+[node name="Anthills" type="Node2D" parent="."]
+
+[node name="AnthillL" parent="Anthills" instance=ExtResource( 4 )]
+color = Color( 0.941176, 0.117647, 0.117647, 1 )
+
+[node name="AnthillR" parent="Anthills" instance=ExtResource( 4 )]
+position = Vector2( 1024, 0 )
+scale = Vector2( -1, 1 )
+color = Color( 0.12549, 0.027451, 0.996078, 1 )
+
+[node name="FoodSpawnArea" type="Node2D" parent="."]
+script = ExtResource( 6 )
+Food = ExtResource( 7 )
+
+[node name="SpawnArea" type="Area2D" parent="FoodSpawnArea"]
+position = Vector2( 519, 278 )
+
+[node name="Shape" type="CollisionShape2D" parent="FoodSpawnArea/SpawnArea"]
+position = Vector2( -9, 20.75 )
+shape = SubResource( 3 )
+
+[node name="FoodGroup" type="Node2D" parent="FoodSpawnArea"]
+position = Vector2( 518, 278 )
+
+[node name="SpawnTimer" type="Timer" parent="FoodSpawnArea"]
+
+[node name="BattleMusicManager" parent="." instance=ExtResource( 1 )]
+
+[connection signal="timeout" from="FoodSpawnArea/SpawnTimer" to="FoodSpawnArea" method="_on_SpawnTimer_timeout"]

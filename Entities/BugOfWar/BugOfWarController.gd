@@ -5,11 +5,10 @@ onready var choose_your_ant = $ChooseAnt
 
 var state = 0
 
-signal reliable_action(info)
-
 
 func set_state(state: int):
 	self.state = state
+	print('setting state: ', state)
 	generic_actions.visible = false
 	choose_your_ant.visible = false
 	if state == 0:
@@ -35,4 +34,8 @@ func _on_Special_button_up():
 
 
 func _on_WorkerAnt_pressed():
-	InputManager.reliable_action({"spawn_ant": "worker_ant"})
+	InputManager.reliable_action({Constants.COMMAND: Constants.BUG_OF_WAR_COMMAND_SPAWN_WORKER_ANT})
+
+
+func _on_player_controller_state_change(state: int):
+	set_state(state)

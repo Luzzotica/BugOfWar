@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "FoodSpawnArea",
+"language": "GDScript",
+"path": "res://Entities/BugOfWar/FoodSpawnArea.gd"
+}, {
+"base": "Node2D",
 "class": "PlayerController",
 "language": "GDScript",
 "path": "res://Scripts/Controllers/PlayerController.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://joystick/virtual_joystick.gd"
 } ]
 _global_script_class_icons={
+"FoodSpawnArea": "",
 "PlayerController": "",
 "VirtualJoystick": ""
 }
@@ -32,6 +38,7 @@ config/icon="res://resources/drawable/icon.png"
 
 [autoload]
 
+Constants="*res://Scripts/Constants.tscn"
 Global="*res://Scripts/Global.gd"
 NetworkManager="*res://Scripts/Managers/NetworkManager.tscn"
 MusicManager="*res://Scripts/Managers/MusicManager.tscn"
