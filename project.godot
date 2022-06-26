@@ -47,6 +47,11 @@ InputManager="*res://Scripts/Managers/InputManager.tscn"
 RandomCoordinateFactory="*res://Scripts/RandomCoordinateFactory.tscn"
 NaturalDisasterFactory="*res://Entities/BugOfWar/Disasters/NaturalDisasterFactory.tscn"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [global]
 
 root=false

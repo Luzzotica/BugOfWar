@@ -62,11 +62,12 @@ func hide_everything():
 	lobby.visible = false
 	controller_container.visible = false
 
-""" SIGNALS """
 
+""" SIGNALS """
 
 func _on_state_connect():
 	set_controller_state(ControllerState.HOME)
+	lobby_ready = false
 
 
 func _on_lobby(team_count: int):

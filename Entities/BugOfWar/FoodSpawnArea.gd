@@ -6,8 +6,8 @@ export(float) var min_wait_time_seconds = 1
 export(float) var max_wait_time_seconds = 5
 export(PackedScene) var Food
 
-onready var food_group: Node = $"FoodGroup"
-onready var spawn_area_shape: CollisionShape2D = $"SpawnArea/Shape"
+onready var food_group: Node = $FoodGroup
+onready var spawn_area_shape: CollisionShape2D = $SpawnArea/Shape
 onready var spawn_area_rect: RectangleShape2D = spawn_area_shape.shape
 onready var spawn_timer: Timer = $SpawnTimer
 

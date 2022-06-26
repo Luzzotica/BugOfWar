@@ -7,14 +7,13 @@ onready var team_member_list: Control = $VBoxContainer/TeamMembers
 var members: Dictionary = {}
 var max_members: int = 4
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 
 func add_member(member: PlayerController, ready: bool) -> bool:
 	if members.size() == max_members:
 		print("Max team size reached")
+		return false
+	elif member in members:
+		print("Member already exists")
 		return false
 	
 	var member_component = lobby_team_member.instance()
@@ -37,3 +36,5 @@ func remove_member(member: PlayerController):
 func set_member_ready(member: PlayerController, ready: bool):
 	if member in members:
 		members[member].set_ready(ready)
+
+
