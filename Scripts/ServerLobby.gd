@@ -5,6 +5,7 @@ const IN_TEAM = "in_team"
 
 onready var team1 = $Panel/HBoxContainer/LobbyTeam
 onready var team2 = $Panel/HBoxContainer/LobbyTeam2
+onready var team2_label = $Panel/HBoxContainer/LobbyTeam2/VBoxContainer/Team
 
 var lobby_player_info: Dictionary = {}
 
@@ -14,6 +15,8 @@ func _ready():
 	# Link the controllers to the game
 	for playerCont in PlayerControllerManager.player_controllers.values():
 		_on_new_player(playerCont)
+	
+	team2_label.text = 'Team 2'
 
 
 """ SIGNALS """
