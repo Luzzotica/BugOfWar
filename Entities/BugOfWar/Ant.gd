@@ -1,13 +1,10 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 const NULL_PATH = NodePath()
 
 export var health: int = 100
-export var speed: int = 400
+export var speed: int = 15000
 export var hauling_multiplier: float = 0.5
-
-var controller: PlayerController = null
-var player_name_tag: String = ""
 
 # onready var sprite: Sprite = get_node("Sprite")
 onready var grab_zone: Area2D = $Pincers/GrabZone
@@ -15,6 +12,11 @@ onready var pincer_pin_joint: PinJoint2D = $Pincers/PinJoint2D
 onready var name_tag_holder: Node2D = $NameTag
 onready var name_tag: Label = $NameTag/Control/Label
 onready var sprite: Sprite = $Icon
+
+var controller: PlayerController = null
+var player_name_tag: String = ""
+var curr_velocity: Vector2 = Vector2.ZERO
+var grabbed_obj = null
 
 signal death
 
@@ -26,28 +28,19 @@ func _process(delta):
 func _physics_process(delta):
 	if controller == null:
 		return
-
-	var vel = controller.direction
-#
-#	if Input.is_action_pressed("move_left"):
-#		vel.x -= speed
-#
-#	if Input.is_action_pressed("move_right"):
-#		vel.x += speed
-#
-#	if Input.is_action_pressed("move_down"):
-#		vel.y += speed
-#
-#	if Input.is_action_pressed("move_up"):
-#		vel.y -= speed
-
+	
+	var dir = controller.direction
+	curr_velocity = dir * speed
+	
 	if is_grabbing_something():
-		linear_velocity = vel * speed * hauling_multiplier
-		look_at(get_grabbed_obj_position())
-	else:
-		linear_velocity = vel * speed
-		look_at(global_position + linear_velocity)
-
+		curr_velocity = curr_velocity * hauling_multiplier
+	
+	look_at(get_look_at_pos())
+	
+	var actual_movement: Vector2 = move_and_slide(curr_velocity * delta)
+	if is_grabbing_something():
+		grabbed_obj.set_force(name, actual_movement / delta)
+	
 	if controller.grab_pressed:
 		grab()
 	else:
@@ -55,11 +48,15 @@ func _physics_process(delta):
 
 
 func is_grabbing_something() -> bool:
-	return pincer_pin_joint.node_b != NULL_PATH and get_node(pincer_pin_joint.node_b) != null
+	return is_instance_valid(grabbed_obj)
+#	return pincer_pin_joint.node_b != NULL_PATH and get_node(pincer_pin_joint.node_b) != null
 
 
-func get_grabbed_obj_position() -> Vector2:
-	return get_node(pincer_pin_joint.node_b).global_position
+func get_look_at_pos() -> Vector2:
+	if is_grabbing_something():
+		return grabbed_obj.global_position
+	return global_position * curr_velocity
+#	return get_node(pincer_pin_joint.node_b).global_position
 
 
 func take_damage(dmg: int):
@@ -71,7 +68,11 @@ func take_damage(dmg: int):
 
 
 func let_go():
-	pincer_pin_joint.node_b = NodePath()
+	if is_grabbing_something():
+		grabbed_obj.remove_force(name)
+	
+	grabbed_obj = null
+#	pincer_pin_joint.node_b = NodePath()
 
 
 func grab():
@@ -88,7 +89,8 @@ func grab():
 
 	if grabbable_body:
 		grabbable_body.on_grabbed()
-		pincer_pin_joint.node_b = grabbable_body.get_path()
+		grabbed_obj = grabbable_body
+#		pincer_pin_joint.node_b = grabbable_body.get_path()
 
 
 func try_get_grabbable_body(bodies: Array) -> PhysicsBody2D:
